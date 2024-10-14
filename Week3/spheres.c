@@ -15,10 +15,10 @@ struct sphere_t {
 };
 
 struct sphere_a{
-    double x[10000];
-    double y[10000];
-    double z[10000];
-    double r[10000];
+    double *x;
+    double *y;
+    double *z;
+    double *r;
 };
 
 double random_number() {

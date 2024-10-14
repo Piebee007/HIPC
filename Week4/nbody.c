@@ -8,7 +8,7 @@
 #include <sys/time.h>
 #include <sys/times.h>
 #include <sys/resource.h>
-
+#include <time.h>
 // Simulation parameters.
 float eps = 0.00125f;
 float dmp = 0.995f;
@@ -45,6 +45,9 @@ int main(int argc, char *argv[]) {
 
 	// Current timestep.
 	int t = 0;
+	
+	clock_t c; 
+    c = clock(); 
 
 	while (t < steps) {
 		for (int i = 0; i < N; i++) {
@@ -105,6 +108,11 @@ int main(int argc, char *argv[]) {
 	}
 
 	printf(" Answer = %f\n", phi);
+
+	c = clock() - c; 
+    float time_taken = ((float)c)/CLOCKS_PER_SEC;
+    
+    fprintf(stderr, "%f seconds taken", time_taken);
 
 	// Tidy up.
 	free(x);
