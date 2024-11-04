@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH --time=00:05:00                 # Maximum time (HH:MM:SS)
+#SBATCH --ntasks=1                      # run on a single CPU
+#SBATCH --mem=1gb                       # reserve 1GB memory for job
+#SBATCH --output=simple_job_%j.log      # standard output and error log
+#SBATCH --partition=teach               # run in the teaching queue
+#SBATCH --account=cs-teach-2024         # specify the CS teaching account
+ 
+echo simple.job running on `hostname`
+OMP_NUM_THREADS=5 ./calculate_pi 10000000000000000
