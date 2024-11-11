@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <mpi.h>
 
 //size of plate
 #define M 200
@@ -23,7 +24,14 @@ void free_2d_array(double ** array) {
 }
 
 int main(int argc, char *argv[]) {
-	printf("Heated Plate calculation\n");
+	int rank, size;
+
+	MPI_Init(&argc, &argv);
+	MPI_Comm_size(MPI_COMM_WORLD,&size);
+	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+
+
+	if (rank == 0) printf("Heated Plate calculation\n");
 
 	// arrays for recording temperatures
 	double** u = alloc_2d_array(M, N);	
